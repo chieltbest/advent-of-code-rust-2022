@@ -1,6 +1,3 @@
-#![feature(variant_count)]
-
-use std::mem;
 use std::str::FromStr;
 use crate::Condition::{Draw, Lose, Win};
 use crate::RoundParseError::{FormatError, Shape1Error, Shape2Error};
@@ -93,7 +90,7 @@ fn to_round(round2: &Round2) -> Round {
 
 fn calc_points(round: &Round) -> u32 {
     // represents the difference in choices
-    let diff = (round.0 as i8 - round.1 as i8).rem_euclid(mem::variant_count::<Shape>() as i8);
+    let diff = (round.0 as i8 - round.1 as i8).rem_euclid(3);
     let win_points = match diff {
         0 => 3, // tie
         1 => 0, // lose
