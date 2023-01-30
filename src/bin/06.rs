@@ -11,9 +11,9 @@ fn is_marker(chars: &[char]) -> bool {
 }
 
 fn find_window(input: &str, size: usize) -> Option<u32> {
-    input.chars().collect::<Vec<_>>().windows(size).enumerate()
-        .find(|(_, chars)| is_marker(chars))
-        .map(|result| (result.0 + size) as u32)
+    input.chars().collect::<Vec<_>>().windows(size)
+        .position(|chars| is_marker(chars))
+        .map(|result| (result + size) as u32)
 }
 
 pub fn part_one(input: &str) -> Option<u32> {
